@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+/* html {
+  box-sizing: border-box;
+} */
+/* .container {
+  margin: auto;
+  /* align-items: center; */
+/* width: 95%;
+} */
+
+body {
+  padding: 2rem;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgb(195, 191, 191);
+}
+
+.welcome {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.logo {
+  height: 5rem;
+  border-radius: 10rem;
+}
+.login {
+  display: flex;
+}
+.login__input {
+  border: none;
+  border-radius: 10rem;
+  margin-right: 1rem;
+  text-align: center;
+  height: 2.5rem;
+}
+.login__btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 2rem;
+  border-radius: 10rem;
+}
+.login__btn:hover {
+  background-color: white;
+}
