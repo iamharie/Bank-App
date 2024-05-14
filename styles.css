@@ -44,6 +44,8 @@ nav {
   text-align: center;
   height: 2.5rem;
 }
+
+/* Login Button */
 .login__btn {
   border: none;
   background: none;
@@ -54,3 +56,21 @@ nav {
 .login__btn:hover {
   background-color: white;
 }
+/* Main App */
+.app {
+  position: relative;
+  max-width: 100rem;
+  margin: 4rem auto;
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: auto repeat(3, 15rem) auto;
+  gap: 2rem;
+
+  opacity: 100;
+  transition: all 1s;
+}
+/* .balance {
+}
+
+.movements {
+} */
