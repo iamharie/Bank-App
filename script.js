@@ -97,6 +97,16 @@ const computeUserNames = function (acc) {
 };
 computeUserNames(accounts);
 /////////////////////////////////////////////////
+//check balance
+const calcPrintBalance = function (acc) {
+  const balance = acc.reduce(function (acum, el) {
+    return acum + el;
+  }, 0);
+  labelBalance.textContent = `${balance} EUR`;
+  console.log(acc.balance);
+};
+// calcPrintBalance(account1.movements);
+calcPrintBalance;
 // LECTURES
 
 const currencies = new Map([
