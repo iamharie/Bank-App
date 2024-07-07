@@ -66,12 +66,12 @@ const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
 /////////////////////////////////////////////////
-
+//Display Movements
 const displayMovements = function (movement) {
   containerMovements.innerHTML = "";
 
   movement.forEach(function (mov, i, arr) {
-    console.log(mov);
+    // console.log(mov);
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
     <div class="movements__row">
@@ -84,7 +84,7 @@ const displayMovements = function (movement) {
   });
 };
 displayMovements(account1.movements);
-
+/////////////////////////////////////////////////
 //computing userNames
 const computeUserNames = function (acc) {
   acc.forEach(function (acc, i) {
@@ -97,16 +97,39 @@ const computeUserNames = function (acc) {
 };
 computeUserNames(accounts);
 /////////////////////////////////////////////////
-//check balance
+// calcPrintBalance;
 const calcPrintBalance = function (acc) {
   const balance = acc.reduce(function (acum, el) {
     return acum + el;
   }, 0);
   labelBalance.textContent = `${balance} EUR`;
-  console.log(acc.balance);
+  console.log(balance);
 };
-// calcPrintBalance(account1.movements);
-calcPrintBalance;
+calcPrintBalance(account1.movements);
+/////////////////////////////////////////////////
+//Display Summary Section
+
+const displaySummary = function (acc) {
+  const deposit = acc.filter((el) => el > 0).reduce((acum, el) => acum + el, 0);
+  labelSumIn.textContent = deposit;
+
+  const withdrawal = acc
+    .filter((el) => el < 0)
+    .reduce((acum, el) => acum + el, 0);
+  labelSumOut.textContent = Math.abs(withdrawal);
+
+  const interest = acc
+    .filter((el) => el > 0)
+    .map((el) => (el * 1.1) / 100)
+    .reduce((acum, el) => acum + el, 0);
+  labelSumInterest.textContent = interest;
+};
+
+displaySummary(account1.movements);
+/////////////////////////////////////////////////
+//Temp login
+
+/////////////////////////////////////////////////
 // LECTURES
 
 const currencies = new Map([
