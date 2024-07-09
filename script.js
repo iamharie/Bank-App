@@ -128,7 +128,22 @@ const displaySummary = function (acc) {
 displaySummary(account1.movements);
 /////////////////////////////////////////////////
 //Temp login
+let currentAccount;
+btnLogin.addEventListener("click", function (e) {
+  e.preventDefault();
 
+  currentAccount = accounts.find(
+    (el) => el.userName === inputLoginUsername.value
+  );
+  if (currentAccount.pin === Number(inputLoginPin.value)) {
+    inputLoginUsername.value = inputLoginPin.value = "";
+    inputLoginPin.blur();
+
+    containerApp.style.opacity = 100;
+  }
+
+  console.log(currentAccount);
+});
 /////////////////////////////////////////////////
 // LECTURES
 
