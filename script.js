@@ -67,10 +67,10 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 /////////////////////////////////////////////////
 //Display Movements
-const displayMovements = function (movement) {
+const displayMovements = function (acc) {
   containerMovements.innerHTML = "";
 
-  movement.forEach(function (mov, i, arr) {
+  acc.forEach(function (mov, i, arr) {
     // console.log(mov);
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
@@ -83,7 +83,8 @@ const displayMovements = function (movement) {
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 //computing userNames
 const computeUserNames = function (acc) {
@@ -138,8 +139,13 @@ btnLogin.addEventListener("click", function (e) {
   if (currentAccount.pin === Number(inputLoginPin.value)) {
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
-
     containerApp.style.opacity = 100;
+    //Username
+
+    //Current movements
+    displayMovements(currentAccount.movements);
+    console.log(currentAccount.movements);
+    //Current balance
   }
 
   console.log(currentAccount);
