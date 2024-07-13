@@ -70,7 +70,7 @@ const inputClosePin = document.querySelector(".form__input--pin");
 const displayMovements = function (acc) {
   containerMovements.innerHTML = "";
 
-  acc.forEach(function (mov, i, arr) {
+  acc.movements.forEach(function (mov, i, arr) {
     // console.log(mov);
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
@@ -100,13 +100,13 @@ computeUserNames(accounts);
 /////////////////////////////////////////////////
 // calcPrintBalance;
 const calcPrintBalance = function (acc) {
-  const balance = acc.reduce(function (acum, el) {
+  acc.balance = acc.movements.reduce(function (acum, el) {
     return acum + el;
   }, 0);
-  labelBalance.textContent = `${balance} EUR`;
-  console.log(balance);
+  labelBalance.textContent = `${acc.balance} EUR`;
+  // console.log(acc.balance);
 };
-calcPrintBalance(account1.movements);
+// calcPrintBalance(accounts);
 /////////////////////////////////////////////////
 //Display Summary Section
 
@@ -143,9 +143,10 @@ btnLogin.addEventListener("click", function (e) {
     //Username
 
     //Current movements
-    displayMovements(currentAccount.movements);
-    console.log(currentAccount.movements);
+    displayMovements(currentAccount);
+
     //Current balance
+    calcPrintBalance(currentAccount);
   }
 
   console.log(currentAccount);
