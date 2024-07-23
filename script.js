@@ -111,24 +111,26 @@ const calcPrintBalance = function (acc) {
 //Display Summary Section
 
 const displaySummary = function (acc) {
-  const deposit = acc.filter((el) => el > 0).reduce((acum, el) => acum + el, 0);
+  const deposit = acc.movements
+    .filter((el) => el > 0)
+    .reduce((acum, el) => acum + el, 0);
   labelSumIn.textContent = deposit;
 
-  const withdrawal = acc
+  const withdrawal = acc.movements
     .filter((el) => el < 0)
     .reduce((acum, el) => acum + el, 0);
   labelSumOut.textContent = Math.abs(withdrawal);
 
-  const interest = acc
+  const interest = acc.movements
     .filter((el) => el > 0)
     .map((el) => (el * 1.1) / 100)
     .reduce((acum, el) => acum + el, 0);
   labelSumInterest.textContent = interest;
 };
 
-displaySummary(account1.movements);
+// displaySummary(account1.movements);
 /////////////////////////////////////////////////
-//Temp login
+//Login Feature
 let currentAccount;
 btnLogin.addEventListener("click", function (e) {
   e.preventDefault();
@@ -140,18 +142,21 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
     containerApp.style.opacity = 100;
-    //Username
 
     //Current movements
     displayMovements(currentAccount);
 
     //Current balance
     calcPrintBalance(currentAccount);
+
+    //Display Summary Section
+    displaySummary(currentAccount);
   }
 
   console.log(currentAccount);
 });
 /////////////////////////////////////////////////
+// containerApp.style.opacity = 100;
 // LECTURES
 
 const currencies = new Map([
