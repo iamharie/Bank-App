@@ -123,12 +123,24 @@ const displaySummary = function (acc) {
 
   const interest = acc.movements
     .filter((el) => el > 0)
-    .map((el) => (el * 1.1) / 100)
+    .map((el) => (el * acc.interestRate) / 100)
     .reduce((acum, el) => acum + el, 0);
   labelSumInterest.textContent = interest;
 };
 
 // displaySummary(account1.movements);
+/////////////////////////////////////////////////
+//Global function call on balance/
+const displayVariable = function (currentAccount) {
+  //Current movements
+  displayMovements(currentAccount);
+
+  //Current balance
+  calcPrintBalance(currentAccount);
+
+  //Display Summary Section
+  displaySummary(currentAccount);
+};
 /////////////////////////////////////////////////
 //Login Feature
 let currentAccount;
@@ -144,16 +156,24 @@ btnLogin.addEventListener("click", function (e) {
     containerApp.style.opacity = 100;
 
     //Current movements
-    displayMovements(currentAccount);
+    // displayMovements(currentAccount);
 
-    //Current balance
-    calcPrintBalance(currentAccount);
+    // //Current balance
+    // calcPrintBalance(currentAccount);
 
-    //Display Summary Section
-    displaySummary(currentAccount);
+    // //Display Summary Section
+    // displaySummary(currentAccount);
+    displayVariable(currentAccount);
   }
 
   console.log(currentAccount);
+});
+/////////////////////////////////////////////////
+//Transefre Money Feature
+btnTransfer.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  console.log("transfer money btn clicked");
 });
 /////////////////////////////////////////////////
 // containerApp.style.opacity = 100;
